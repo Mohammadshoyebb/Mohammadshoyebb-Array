@@ -10,7 +10,5 @@ public class Largest_Element_in_array {
         }
     }
     System.out.println(largest);
-
-
    } 
 }
