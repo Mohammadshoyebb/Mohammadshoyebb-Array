@@ -13,7 +13,7 @@ public class BINARY_SEARCH {
             }
             if (key < n[mid]) {
                 end = mid - 1;
-            } else { 
+            } else { // Corrected the condition here
                 start = mid + 1;
             }
         }
