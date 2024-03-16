@@ -29,49 +29,42 @@
 
 
 public class SingleElementInSortedArray_leetcode27 {
-    /**
-     * Finds the single element in a sorted array where every other element appears exactly twice.
-     *
-     * @param nums The sorted array of integers.
-     * @return The single element that appears only once.
-     */
     public int singleNonDuplicate(int[] nums) {
-        // Initialize left pointer to the start of the array
-        int left = 0;
-        // Initialize right pointer to the end of the array
-        int right = nums.length - 1;
-        
-        // Perform binary search
-        while (left < right) {
-            // Calculate the middle index
-            int mid = left + (right - left) / 2;
-            
-            // Check if mid is odd
-            if (mid % 2 == 1) {
-                // If mid is odd, compare with its previous element
-                if (nums[mid] == nums[mid - 1]) {
-                    // If equal, single element is to the right of mid
-                    left = mid + 1;
-                } else {
-                    // If not equal, single element is to the left of mid
-                    right = mid - 1;
+        if(nums.length==1){
+            return nums[0];
+        }else if ( nums[0]!=nums[1]){
+            return nums[0];
+        }else if ( nums[nums.length-1] != nums[nums.length-2]){
+            return nums[nums.length-1];
+        }
+
+        int start = 0 ;
+        int end = nums.length-1 ;
+
+        while(start<=end){
+            int mid = (start + end)/2;
+
+            if(nums[mid]!=nums[mid-1] && nums[mid]!=nums[mid+1]){
+                return nums[mid];
+            }else if ( mid % 2 ==1 ){ // if mid index is odd
+
+                if(nums[mid-1]==nums[mid]){
+                    start = mid+1 ;
+                }else{
+                    end = mid-1 ;
                 }
-            } else {
-                // If mid is even, compare with its next element
-                if (nums[mid] == nums[mid + 1]) {
-                    // If equal, single element is to the right of mid
-                    left = mid + 2;
-                } else {
-                    // If not equal, single element is to the left of mid
-                    right = mid;
-                }
+            }else { // if mid index is even
+                    if(nums[mid]==nums[mid+1]){
+                        start = mid +1 ;
+                    }else{
+                        end = mid -1 ;
+                    }
             }
         }
-        
-        // At the end, left will point to the single element
-        return nums[left];
+
+        return -1 ;
     }
-    
+
     public static void main(String[] args) {
         SingleElementInSortedArray_leetcode27 solution = new SingleElementInSortedArray_leetcode27();
         
